@@ -33,9 +33,8 @@ namespace MethodReturn
             int num1 = Convert.ToInt16(q1Num1Input.Text);
             int num2 = Convert.ToInt16(q1Num2Input.Text);
            
-            Add(num1, num2);
-
-
+            int answer = Add(num1, num2);
+            q1Output.Text = $"{num1} + {num2} = {answer}";
 
             /// 2.  Get values for question 2 and call the Area method. 
             /// Accept the returned value and then display it.
@@ -48,7 +47,11 @@ namespace MethodReturn
             /// Input: 6, 2
             /// The area is 18 units squared
 
+            double length = Convert.ToDouble(lengthInput.Text);
+            double width = Convert.ToDouble(widthInput.Text);
 
+            double answer2 = Area(length, width);
+            q2Output.Text = $"{length} * {width} = {answer2} ^2";
 
             /// 3.  Get a value for question 3 and call the PrintPrice 
             /// method. Accept the returned value and then display it.
@@ -64,19 +67,21 @@ namespace MethodReturn
             /// Input: 200
             /// The total price is $100.00
 
+            int copies = Convert.ToInt32(copiesInput.Text);
 
-
+            double totalPrice = PrintPrice(copies);
+            q3Output.Text = $"The total price is {totalPrice}";
         }
 
         /// 1. Create a method called Add, that accepts 2 int 
         /// parameters, (x and y), adds them together, and then 
         /// returns the result back to the method call.       
 
-        public void Add(int x, int y)
+        public int Add(int x, int y)
         {
             int sum = x + y;
 
-            q1Output.Text = $"{x} + {y} = {sum}";
+            return sum;
         }
 
 
@@ -85,7 +90,13 @@ namespace MethodReturn
         /// area of a rectangle , and then returns the result 
         /// back to the method call.
 
+        public double Area(double x, double y)
+        {
+            double area = x * y;
+            return area;
 
+            //return x * y;
+        }
 
         /// 3. Create a method called PrintPrice, that accepts 1 
         /// int parameter, (prints), uses it to determine the 
@@ -98,6 +109,24 @@ namespace MethodReturn
         /// 51 - 100 prints:  $0.65/print
         /// 101 or over:  $0.50/print
 
-
+        public double PrintPrice(int prints)
+        {
+            if (prints < 11)
+            {
+                return 1.00 * prints;
+            }
+            else if (prints < 51)
+            {
+                return 0.75 * prints;
+            }
+            else if (prints < 101)
+            {
+                return 0.65 * prints;
+            }
+            else
+            {
+                return 0.50 * prints;
+            }
+        }
     }
 }
